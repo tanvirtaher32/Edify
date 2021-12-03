@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Courses{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+      <div class="list-group">
+          <a href="{% url 'courses'  %}" class="list-group-item list-group-item-action" area-current="true">All Courses</a>
+          <a href="{% url 'coursesData' 'Computer  Science & Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Computer Science & Engineering</a>
+          <a href="{% url 'coursesData' 'Electrical & Electronic Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Electrical & Electronic Engineering</a>
+          <a href="{% url 'coursesData' 'Aerospace Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Aerospace Engineering</a>
+          <a href="{% url 'coursesData' 'Biomechanical Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Biomechanical Engineering</a>
+          <a href="{% url 'coursesData' 'Chemical Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Chemical Engineering</a>
+          <a href="{% url 'coursesData' 'Mechanical Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Mechanical Engineering</a>
+          <a href="{% url 'coursesData' 'Civil Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Civil Engineering</a>
+          <a href="{% url 'coursesData' 'Computer & Communication Engineering' %}" class="list-group-item list-group-item-action" area-current="true">Computer & Communication Engineering</a>
+          <a href="{% url 'coursesData' 'Applied Math' %}" class="list-group-item list-group-item-action" area-current="true">Applied Math</a>
+          <a href="{% url 'coursesData' 'Applied Physics' %}" class="list-group-item list-group-item-action" area-current="true">Applied Physics</a>
+          <a href="{% url 'coursesData' 'below' %}" class="list-group-item list-group-item-action" area-current="true">Below 4000 Bdt</a>
+          <a href="{% url 'coursesData' 'above' %}" class="list-group-item list-group-item-action" area-current="true">Above 4000 Bdt</a>
+      </div>
+  
+  </div>
+  <div class="col-sm-8 ">
+   <div class="row">
+       {% for course in courseShow %}
+       <div class="col-sm-4 text-center mb-4 ">
+           <a href="{% url 'course-detail' course.id %}" class="btn ">
+               <div class="item">
+                   <img src="{{course.product_image.url}}" height="250px" width="260px"alt="">
+                   <div class="fw-bold">
+                    {{course.title}}
+                   </div>
+                   <div class="fw-bold">
+                    BDT. {{course.discounted_price}}
+                    <small class="fw-bold text-decoration-line-through">
+                    {{course.selling_price}}
+                   </small>
+                   </div>
+               </div>
+           </a>
+       </div>
+       {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
