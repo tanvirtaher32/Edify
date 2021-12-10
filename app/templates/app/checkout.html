@@ -7,23 +7,35 @@
   <div class="col-sm-6">
     <h4>Order Summary</h4>
     <hr>
+    
+    {% for item in cart_items %}
+    
       <div class="card mb-2">
         <div class="card-body">
-          <h5>Course: Course 1</h5>
+          <h5>{{item.course.title}}</h5>
           <!-- <p>Quantity: 2</p> -->
-          <p class="fw-bold">Price: 100.00</p>
+          <p class="fw-bold">Price: {{item.total_cost}}</p>
         </div>
       </div>
-    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+        
+    {% endfor %}
+
+    <p class="fw-bold text-dark"> Total Price: {{total_amount}} BDT</p>
+     
+    <h4>Terms Of Use</h4>
+    <small>Edify’s mission is to improve lives through learning. We enable anyone anywhere to create and share educational content (instructors) and to access that educational content to learn (students). We consider our marketplace model the best way to offer valuable educational content to our users. We need rules to keep our platform and services safe for you, us, and our student and instructor community.</small>
   </div>
   <div class="col-sm-4 offset-sm-1">
     <h4>Select Shipping Address</h4>
     <hr>
     <form action="">
+      
+      {% for ad in add %}
+        
       <div class="card">
         <div class="card-body">
-        <h5>Tanvir</h5>
-        <p>Chittagong</p>
+        <h5>{{ad.name}}</h5>
+        <p>{{ad.locality}}, {{ad.city}}, {{ad.zipcode}}</p>
         </div>
       </div>
         <div class="form-check mt-2 mb-5">
@@ -31,6 +43,8 @@
           <label class="form-check-label fw-bold" for="">
             Address: 1 </label> -->
         </div>
+
+        {% endfor %}
         <div class="text-end">
           <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
         </div>

@@ -138,6 +138,18 @@ class CustomerRegistrationView(View):
 
 
 def checkout(request):
- return render(request, 'app/checkout.html')
+    user = request.user
+    add = Student.objects.filter(user=user)
+    cart_items = Cart.objects.filter(user=user)
+    cart = Cart.objects.filter(user=user)
+    amount = 0.0
+    total_amount = 0.0
+    cart_course = [c for c in cart if Cart.objects.all() if c.user==user]
+    if cart_course :
+        for c in cart_course :
+            tempAmmount = (c.quantity* c.course.discounted_price)
+            amount+=tempAmmount
+        total_amount=amount
+    return render(request, 'app/checkout.html',{ 'add': add, 'total_amount': total_amount,'cart_items': cart_items})
 
 
