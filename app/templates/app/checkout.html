@@ -23,12 +23,13 @@
     <p class="fw-bold text-dark"> Total Price: {{total_amount}} BDT</p>
      
     <h4>Terms Of Use</h4>
-    <small>Edify’s mission is to improve lives through learning. We enable anyone anywhere to create and share educational content (instructors) and to access that educational content to learn (students). We consider our marketplace model the best way to offer valuable educational content to our users. We need rules to keep our platform and services safe for you, us, and our student and instructor community.</small>
+    <small class="text-muted">Edify’s mission is to improve lives through learning. We enable anyone anywhere to create and share educational content (instructors) and to access that educational content to learn (students). We consider our marketplace model the best way to offer valuable educational content to our users. We need rules to keep our platform and services safe for you, us, and our student and instructor community.</small>
   </div>
   <div class="col-sm-4 offset-sm-1">
-    <h4>Select Shipping Address</h4>
-    <hr>
-    <form action="">
+    <h4>Student details</h4>
+    
+    <form action="/paymentdone" class="">
+      <hr class="">
       
       {% for ad in add %}
         
@@ -39,13 +40,13 @@
         </div>
       </div>
         <div class="form-check mt-2 mb-5">
-          <!-- <input class="form-check-input" type="radio" value="">
-          <label class="form-check-label fw-bold" for="">
-            Address: 1 </label> -->
+          <input class="form-check-input" type="radio" name="stdid" id="stdid" value="{{ad.id}}" checked>
+          <label class="form-check-label fw-bold" for="stdid">
+            Info </label>
         </div>
 
         {% endfor %}
-        <div class="text-end">
+        <div class="text-end mb-5">
           <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
         </div>
       </form>

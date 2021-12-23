@@ -15,12 +15,39 @@
    <p>{{course.description}}</p> <br>
    <h4>BDT. {{course.discounted_price}} <small class="fw-light text-decoration-line-through">{{course.selling_price}}</small></h4> <br>
 
+   
+   {% if request.user.is_authenticated %}
+       
+   
+       
+    
+    {% if course_already_in_cart %}
+
+    <a href="{% url 'showcart'%}" class="btn btn-warning shadow px-5 py-2">Go to Cart</a>
+        
+    
+        
+    {% else %}
    <form action="/add-to-cart" class="d-inline">
        <input type="hidden" name="course_id" value="{{course.id}}" id="course_id">
        <button type="submit" class="btn btn-warning shadow px-5 py-2">Add to Cart</button>
    </form>
+   {% endif %}
+   {% endif %}
+
+   
+   {% if not request.user.is_authenticated %}
+
+    <form action="/add-to-cart" class="d-inline">
+        <input type="hidden" name="course_id" value="{{course.id}}" id="course_id">
+        <button type="submit" class="btn btn-warning shadow px-5 py-2">Add to Cart</button>
+    </form>
+       
+   {% endif %}
+       
+
    <!-- <a href="{% url 'add-to-cart' %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a> -->
-   <a href="{% url 'buy-now' %}" class="btn btn-dark shadow px-5 py-2 ms-4">Buy Now</a>
+   <a href="{% url 'checkout' %}" class="btn btn-dark shadow px-5 py-2 ms-4">Buy Now</a>
    <h5 class="mt-5">Available Offers</h5>
    <ul>
     <li>Bank Offer 5% Unlimited Cashback on American Express</li>
